@@ -1,0 +1,10 @@
+﻿ComfyUI_windows_portable/
+models/
+downloads/
+tools/bin/
+__pycache__/
+tools/__pycache__/
+*.bak
+cookies_instagram.txt
+studio_out.log
+studio_err.log
