@@ -1,0 +1,2805 @@
+{
+  "generated": 1795018755,
+  "nodes": [
+    {
+      "id": "bat:graphify.bat",
+      "label": "graphify.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:make.bat",
+      "label": "make.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:run_image.bat",
+      "label": "run_image.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:run_shots.bat",
+      "label": "run_shots.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:start_comfyui.bat",
+      "label": "start_comfyui.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:stop_all.bat",
+      "label": "stop_all.bat",
+      "group": "entry"
+    },
+    {
+      "id": "bat:studio.bat",
+      "label": "studio.bat",
+      "group": "entry"
+    },
+    {
+      "id": "py:cookies_json_to_netscape.py",
+      "label": "cookies_json_to_netscape.py",
+      "group": "script"
+    },
+    {
+      "id": "py:graphify.py",
+      "label": "graphify.py",
+      "group": "script"
+    },
+    {
+      "id": "py:image.py",
+      "label": "image.py",
+      "group": "script"
+    },
+    {
+      "id": "py:make.py",
+      "label": "make.py",
+      "group": "script"
+    },
+    {
+      "id": "py:motion.py",
+      "label": "motion.py",
+      "group": "script"
+    },
+    {
+      "id": "py:new_idea.py",
+      "label": "new_idea.py",
+      "group": "script"
+    },
+    {
+      "id": "py:pointcheck.py",
+      "label": "pointcheck.py",
+      "group": "script"
+    },
+    {
+      "id": "py:qa.py",
+      "label": "qa.py",
+      "group": "script"
+    },
+    {
+      "id": "py:sheet.py",
+      "label": "sheet.py",
+      "group": "script"
+    },
+    {
+      "id": "py:sheet_contact.py",
+      "label": "sheet_contact.py",
+      "group": "script"
+    },
+    {
+      "id": "py:shots.py",
+      "label": "shots.py",
+      "group": "script"
+    },
+    {
+      "id": "py:studio.py",
+      "label": "studio.py",
+      "group": "script"
+    },
+    {
+      "id": "py:turntable.py",
+      "label": "turntable.py",
+      "group": "script"
+    },
+    {
+      "id": "py:upscale.py",
+      "label": "upscale.py",
+      "group": "script"
+    },
+    {
+      "id": "ui:graph.html",
+      "label": "graph.html",
+      "group": "ui"
+    },
+    {
+      "id": "ui:library.html",
+      "label": "library.html",
+      "group": "ui"
+    },
+    {
+      "id": "ui:motion.html",
+      "label": "motion.html",
+      "group": "ui"
+    },
+    {
+      "id": "ui:studio.html",
+      "label": "studio.html",
+      "group": "ui"
+    },
+    {
+      "id": "ps:download_models.ps1",
+      "label": "download_models.ps1",
+      "group": "script"
+    },
+    {
+      "id": "ext:comfy",
+      "label": "ComfyUI server (:8188)",
+      "group": "core"
+    },
+    {
+      "id": "ext:studio",
+      "label": "Studio server (:8190)",
+      "group": "core"
+    },
+    {
+      "id": "core:comfy",
+      "label": "ComfyUI core",
+      "group": "core"
+    },
+    {
+      "id": "cfg:extra_model_paths.yaml",
+      "label": "extra_model_paths.yaml",
+      "group": "config"
+    },
+    {
+      "id": "cfg:cookies_instagram.txt",
+      "label": "cookies_instagram.txt",
+      "group": "config"
+    },
+    {
+      "id": "bin:ffmpeg",
+      "label": "ffmpeg (tools\\bin)",
+      "group": "binary"
+    },
+    {
+      "id": "api:/",
+      "label": "/",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/clear_input",
+      "label": "/api/clear_input",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/graph",
+      "label": "/api/graph",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/job",
+      "label": "/api/job",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/jobs",
+      "label": "/api/jobs",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/library",
+      "label": "/api/library",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/motion/job",
+      "label": "/api/motion/job",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/motion/run",
+      "label": "/api/motion/run",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/motion/upload",
+      "label": "/api/motion/upload",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/new",
+      "label": "/api/new",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/preview",
+      "label": "/api/preview",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/run",
+      "label": "/api/run",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/stop",
+      "label": "/api/stop",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/thumb",
+      "label": "/api/thumb",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/upload_input",
+      "label": "/api/upload_input",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/upload_voice",
+      "label": "/api/upload_voice",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/upscale",
+      "label": "/api/upscale",
+      "group": "api"
+    },
+    {
+      "id": "api:/api/voices",
+      "label": "/api/voices",
+      "group": "api"
+    },
+    {
+      "id": "api:/dashboard",
+      "label": "/dashboard",
+      "group": "api"
+    },
+    {
+      "id": "api:/files/",
+      "label": "/files/",
+      "group": "api"
+    },
+    {
+      "id": "api:/graph",
+      "label": "/graph",
+      "group": "api"
+    },
+    {
+      "id": "api:/history",
+      "label": "/history",
+      "group": "api"
+    },
+    {
+      "id": "api:/jobs",
+      "label": "/jobs",
+      "group": "api"
+    },
+    {
+      "id": "api:/motion",
+      "label": "/motion",
+      "group": "api"
+    },
+    {
+      "id": "node:VAEDecode",
+      "label": "VAEDecode",
+      "group": "comfy"
+    },
+    {
+      "id": "node:AudioEncoderLoader",
+      "label": "AudioEncoderLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:TrimVideoLatent",
+      "label": "TrimVideoLatent",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CLIPVisionEncode",
+      "label": "CLIPVisionEncode",
+      "group": "comfy"
+    },
+    {
+      "id": "node:LoadImage",
+      "label": "LoadImage",
+      "group": "comfy"
+    },
+    {
+      "id": "node:AudioEncoderEncode",
+      "label": "AudioEncoderEncode",
+      "group": "comfy"
+    },
+    {
+      "id": "node:BasicScheduler",
+      "label": "BasicScheduler",
+      "group": "comfy"
+    },
+    {
+      "id": "node:LatentSyncNode",
+      "label": "LatentSyncNode",
+      "group": "comfy"
+    },
+    {
+      "id": "node:VideoLengthAdjuster",
+      "label": "VideoLengthAdjuster",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ImageScale",
+      "label": "ImageScale",
+      "group": "comfy"
+    },
+    {
+      "id": "node:VHS_LoadVideoPath",
+      "label": "VHS_LoadVideoPath",
+      "group": "comfy"
+    },
+    {
+      "id": "node:PrimitiveString",
+      "label": "PrimitiveString",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ModelPatchLoader",
+      "label": "ModelPatchLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:WanImageToVideo",
+      "label": "WanImageToVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:DrawMaskOnImage",
+      "label": "DrawMaskOnImage",
+      "group": "comfy"
+    },
+    {
+      "id": "node:GrowMask",
+      "label": "GrowMask",
+      "group": "comfy"
+    },
+    {
+      "id": "node:SamplerCustomAdvanced",
+      "label": "SamplerCustomAdvanced",
+      "group": "comfy"
+    },
+    {
+      "id": "node:LoraLoaderModelOnly",
+      "label": "LoraLoaderModelOnly",
+      "group": "comfy"
+    },
+    {
+      "id": "node:EmptySD3LatentImage",
+      "label": "EmptySD3LatentImage",
+      "group": "comfy"
+    },
+    {
+      "id": "node:KSampler",
+      "label": "KSampler",
+      "group": "comfy"
+    },
+    {
+      "id": "node:PixelPerfectResolution",
+      "label": "PixelPerfectResolution",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ChatterboxUnloadAll",
+      "label": "ChatterboxUnloadAll",
+      "group": "comfy"
+    },
+    {
+      "id": "node:AudioMerge",
+      "label": "AudioMerge",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CLIPLoader",
+      "label": "CLIPLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CFGGuider",
+      "label": "CFGGuider",
+      "group": "comfy"
+    },
+    {
+      "id": "node:BlockifyMask",
+      "label": "BlockifyMask",
+      "group": "comfy"
+    },
+    {
+      "id": "node:VAELoader",
+      "label": "VAELoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CLIPTextEncode",
+      "label": "CLIPTextEncode",
+      "group": "comfy"
+    },
+    {
+      "id": "node:LoadVideo",
+      "label": "LoadVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:KSamplerSelect",
+      "label": "KSamplerSelect",
+      "group": "comfy"
+    },
+    {
+      "id": "node:VAEDecodeTiled",
+      "label": "VAEDecodeTiled",
+      "group": "comfy"
+    },
+    {
+      "id": "node:SaveImage",
+      "label": "SaveImage",
+      "group": "comfy"
+    },
+    {
+      "id": "node:RandomNoise",
+      "label": "RandomNoise",
+      "group": "comfy"
+    },
+    {
+      "id": "node:LoadAudio",
+      "label": "LoadAudio",
+      "group": "comfy"
+    },
+    {
+      "id": "node:RIFE VFI",
+      "label": "RIFE VFI",
+      "group": "comfy"
+    },
+    {
+      "id": "node:DWPreprocessor",
+      "label": "DWPreprocessor",
+      "group": "comfy"
+    },
+    {
+      "id": "node:DownloadAndLoadSAM2Model",
+      "label": "DownloadAndLoadSAM2Model",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ModelSamplingAuraFlow",
+      "label": "ModelSamplingAuraFlow",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CreateVideo",
+      "label": "CreateVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:WanInfiniteTalkToVideo",
+      "label": "WanInfiniteTalkToVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:VHS_VideoCombine",
+      "label": "VHS_VideoCombine",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ImageFromBatch",
+      "label": "ImageFromBatch",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CLIPLoaderGGUF",
+      "label": "CLIPLoaderGGUF",
+      "group": "comfy"
+    },
+    {
+      "id": "node:WanAnimateToVideo",
+      "label": "WanAnimateToVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:SaveAudio",
+      "label": "SaveAudio",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ModelSamplingSD3",
+      "label": "ModelSamplingSD3",
+      "group": "comfy"
+    },
+    {
+      "id": "node:MMAudioFeatureUtilsLoader",
+      "label": "MMAudioFeatureUtilsLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:UnetLoaderGGUF",
+      "label": "UnetLoaderGGUF",
+      "group": "comfy"
+    },
+    {
+      "id": "node:GetVideoComponents",
+      "label": "GetVideoComponents",
+      "group": "comfy"
+    },
+    {
+      "id": "node:MMAudioSampler",
+      "label": "MMAudioSampler",
+      "group": "comfy"
+    },
+    {
+      "id": "node:KSamplerAdvanced",
+      "label": "KSamplerAdvanced",
+      "group": "comfy"
+    },
+    {
+      "id": "node:CLIPVisionLoader",
+      "label": "CLIPVisionLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ImageBatch",
+      "label": "ImageBatch",
+      "group": "comfy"
+    },
+    {
+      "id": "node:AudioAdjustVolume",
+      "label": "AudioAdjustVolume",
+      "group": "comfy"
+    },
+    {
+      "id": "node:Sam2Segmentation",
+      "label": "Sam2Segmentation",
+      "group": "comfy"
+    },
+    {
+      "id": "node:SaveVideo",
+      "label": "SaveVideo",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ConditioningZeroOut",
+      "label": "ConditioningZeroOut",
+      "group": "comfy"
+    },
+    {
+      "id": "node:MMAudioModelLoader",
+      "label": "MMAudioModelLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ChatterboxTTS",
+      "label": "ChatterboxTTS",
+      "group": "comfy"
+    },
+    {
+      "id": "node:ImageUpscaleWithModel",
+      "label": "ImageUpscaleWithModel",
+      "group": "comfy"
+    },
+    {
+      "id": "node:UpscaleModelLoader",
+      "label": "UpscaleModelLoader",
+      "group": "comfy"
+    },
+    {
+      "id": "pack:ComfyUI-LatentSyncWrapper",
+      "label": "ComfyUI-LatentSyncWrapper",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-VideoHelperSuite",
+      "label": "ComfyUI-VideoHelperSuite",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-KJNodes",
+      "label": "ComfyUI-KJNodes",
+      "group": "pack"
+    },
+    {
+      "id": "pack:comfyui_controlnet_aux",
+      "label": "comfyui_controlnet_aux",
+      "group": "pack"
+    },
+    {
+      "id": "pack:videos_repo_utils",
+      "label": "videos_repo_utils",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-Frame-Interpolation",
+      "label": "ComfyUI-Frame-Interpolation",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-segment-anything-2",
+      "label": "ComfyUI-segment-anything-2",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-GGUF",
+      "label": "ComfyUI-GGUF",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-MMAudio",
+      "label": "ComfyUI-MMAudio",
+      "group": "pack"
+    },
+    {
+      "id": "pack:ComfyUI-Chatterbox",
+      "label": "ComfyUI-Chatterbox",
+      "group": "pack"
+    },
+    {
+      "id": "model:4x-UltraSharp.pth",
+      "label": "4x-UltraSharp.pth",
+      "group": "model"
+    },
+    {
+      "id": "model:Wan2.2-Animate-14B-Q3_K_S.gguf",
+      "label": "Wan2.2-Animate-14B-Q3_K_S.gguf",
+      "group": "model"
+    },
+    {
+      "id": "model:Z-Image-AbliteratedV1.Q8_0.gguf",
+      "label": "Z-Image-AbliteratedV1.Q8_0.gguf",
+      "group": "model"
+    },
+    {
+      "id": "model:ae.safetensors",
+      "label": "ae.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "label": "apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:bigvgan_discriminator_optimizer.pt",
+      "label": "bigvgan_discriminator_optimizer.pt",
+      "group": "model"
+    },
+    {
+      "id": "model:bigvgan_generator.pt",
+      "label": "bigvgan_generator.pt",
+      "group": "model"
+    },
+    {
+      "id": "model:clip_vision_h.safetensors",
+      "label": "clip_vision_h.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:dw-ll_ucoco_384_bs5.torchscript.pt",
+      "label": "dw-ll_ucoco_384_bs5.torchscript.pt",
+      "group": "model"
+    },
+    {
+      "id": "model:lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+      "label": "lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:mmaudio_large_44k_v2_fp16.safetensors",
+      "label": "mmaudio_large_44k_v2_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:mmaudio_synchformer_fp16.safetensors",
+      "label": "mmaudio_synchformer_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:mmaudio_vae_44k_fp16.safetensors",
+      "label": "mmaudio_vae_44k_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:qwen_3_4b_fp8_mixed.safetensors",
+      "label": "qwen_3_4b_fp8_mixed.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:rife49.pth",
+      "label": "rife49.pth",
+      "group": "model"
+    },
+    {
+      "id": "model:sam2_hiera_base_plus.safetensors",
+      "label": "sam2_hiera_base_plus.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:umt5-xxl-encoder-Q5_K_M.gguf",
+      "label": "umt5-xxl-encoder-Q5_K_M.gguf",
+      "group": "model"
+    },
+    {
+      "id": "model:wan2.1-i2v-14b-480p-Q3_K_M.gguf",
+      "label": "wan2.1-i2v-14b-480p-Q3_K_M.gguf",
+      "group": "model"
+    },
+    {
+      "id": "model:wan2.1_infiniteTalk_single_fp16.safetensors",
+      "label": "wan2.1_infiniteTalk_single_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:wan2.2_animate_14B_relight_lora_bf16.safetensors",
+      "label": "wan2.2_animate_14B_relight_lora_bf16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+      "label": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+      "label": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:wan_2.1_vae.safetensors",
+      "label": "wan_2.1_vae.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:wav2vec2-chinese-base_fp16.safetensors",
+      "label": "wav2vec2-chinese-base_fp16.safetensors",
+      "group": "model"
+    },
+    {
+      "id": "model:yolox_l.onnx",
+      "label": "yolox_l.onnx",
+      "group": "model"
+    },
+    {
+      "id": "model:z-image-turbo-Q6_K.gguf",
+      "label": "z-image-turbo-Q6_K.gguf",
+      "group": "model"
+    },
+    {
+      "id": "model:z_image_nsfw_v2-Q8_0.gguf",
+      "label": "z_image_nsfw_v2-Q8_0.gguf",
+      "group": "model"
+    },
+    {
+      "id": "dir:jobs",
+      "label": "jobs\\",
+      "group": "data"
+    },
+    {
+      "id": "dir:projects",
+      "label": "projects\\",
+      "group": "data"
+    },
+    {
+      "id": "dir:voices",
+      "label": "voices\\",
+      "group": "data"
+    },
+    {
+      "id": "dir:models",
+      "label": "models\\",
+      "group": "data"
+    },
+    {
+      "id": "dir:images",
+      "label": "images\\",
+      "group": "data"
+    }
+  ],
+  "edges": [
+    {
+      "source": "bat:graphify.bat",
+      "target": "py:graphify.py",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:make.bat",
+      "target": "py:make.py",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:run_image.bat",
+      "target": "py:image.py",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:run_shots.bat",
+      "target": "py:shots.py",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:start_comfyui.bat",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "bat:start_comfyui.bat",
+      "target": "cfg:extra_model_paths.yaml",
+      "kind": "uses"
+    },
+    {
+      "source": "bat:start_comfyui.bat",
+      "target": "ext:comfy",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:stop_all.bat",
+      "target": "ext:comfy",
+      "kind": "stops"
+    },
+    {
+      "source": "bat:stop_all.bat",
+      "target": "ext:studio",
+      "kind": "stops"
+    },
+    {
+      "source": "bat:studio.bat",
+      "target": "bat:start_comfyui.bat",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:studio.bat",
+      "target": "ext:studio",
+      "kind": "runs"
+    },
+    {
+      "source": "bat:studio.bat",
+      "target": "py:studio.py",
+      "kind": "runs"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:AudioAdjustVolume",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:AudioEncoderEncode",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:AudioEncoderLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:AudioMerge",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:BasicScheduler",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CFGGuider",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CLIPLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CLIPTextEncode",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CLIPVisionEncode",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CLIPVisionLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ConditioningZeroOut",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:CreateVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:EmptySD3LatentImage",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:GetVideoComponents",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ImageBatch",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ImageScale",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ImageUpscaleWithModel",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:KSampler",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:KSamplerAdvanced",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:KSamplerSelect",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:LoadAudio",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:LoadImage",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:LoadVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:LoraLoaderModelOnly",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ModelPatchLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ModelSamplingAuraFlow",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:ModelSamplingSD3",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:PrimitiveString",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:RandomNoise",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:SamplerCustomAdvanced",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:SaveAudio",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:SaveImage",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:SaveVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:TrimVideoLatent",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:UpscaleModelLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:VAEDecode",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:VAEDecodeTiled",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:VAELoader",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:WanAnimateToVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:WanImageToVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "core:comfy",
+      "target": "node:WanInfiniteTalkToVideo",
+      "kind": "provides"
+    },
+    {
+      "source": "model:4x-UltraSharp.pth",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:Wan2.2-Animate-14B-Q3_K_S.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:Z-Image-AbliteratedV1.Q8_0.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:ae.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:bigvgan_discriminator_optimizer.pt",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:bigvgan_generator.pt",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:clip_vision_h.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:dw-ll_ucoco_384_bs5.torchscript.pt",
+      "target": "pack:comfyui_controlnet_aux",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:mmaudio_large_44k_v2_fp16.safetensors",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:mmaudio_synchformer_fp16.safetensors",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:mmaudio_vae_44k_fp16.safetensors",
+      "target": "pack:ComfyUI-MMAudio",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:qwen_3_4b_fp8_mixed.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:rife49.pth",
+      "target": "pack:ComfyUI-Frame-Interpolation",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:sam2_hiera_base_plus.safetensors",
+      "target": "pack:ComfyUI-segment-anything-2",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:umt5-xxl-encoder-Q5_K_M.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan2.1-i2v-14b-480p-Q3_K_M.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan2.1_infiniteTalk_single_fp16.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan2.2_animate_14B_relight_lora_bf16.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wan_2.1_vae.safetensors",
+      "target": "core:comfy",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:wav2vec2-chinese-base_fp16.safetensors",
+      "target": "pack:ComfyUI-LatentSyncWrapper",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:yolox_l.onnx",
+      "target": "pack:comfyui_controlnet_aux",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:z-image-turbo-Q6_K.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "model:z_image_nsfw_v2-Q8_0.gguf",
+      "target": "pack:ComfyUI-GGUF",
+      "kind": "loaded by"
+    },
+    {
+      "source": "pack:ComfyUI-Chatterbox",
+      "target": "node:ChatterboxTTS",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-Frame-Interpolation",
+      "target": "node:RIFE VFI",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-GGUF",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-GGUF",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-KJNodes",
+      "target": "node:BlockifyMask",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-KJNodes",
+      "target": "node:DrawMaskOnImage",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-KJNodes",
+      "target": "node:GrowMask",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-KJNodes",
+      "target": "node:ImageFromBatch",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-LatentSyncWrapper",
+      "target": "node:LatentSyncNode",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-LatentSyncWrapper",
+      "target": "node:VideoLengthAdjuster",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-MMAudio",
+      "target": "node:MMAudioFeatureUtilsLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-MMAudio",
+      "target": "node:MMAudioModelLoader",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-MMAudio",
+      "target": "node:MMAudioSampler",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-VideoHelperSuite",
+      "target": "node:VHS_LoadVideoPath",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-VideoHelperSuite",
+      "target": "node:VHS_VideoCombine",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-segment-anything-2",
+      "target": "node:DownloadAndLoadSAM2Model",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:ComfyUI-segment-anything-2",
+      "target": "node:Sam2Segmentation",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:comfyui_controlnet_aux",
+      "target": "node:DWPreprocessor",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:comfyui_controlnet_aux",
+      "target": "node:PixelPerfectResolution",
+      "kind": "provides"
+    },
+    {
+      "source": "pack:videos_repo_utils",
+      "target": "node:ChatterboxUnloadAll",
+      "kind": "provides"
+    },
+    {
+      "source": "ps:download_models.ps1",
+      "target": "dir:models",
+      "kind": "data"
+    },
+    {
+      "source": "py:cookies_json_to_netscape.py",
+      "target": "cfg:cookies_instagram.txt",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "ext:comfy",
+      "kind": "http"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:bigvgan_discriminator_optimizer.pt",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:bigvgan_generator.pt",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:dw-ll_ucoco_384_bs5.torchscript.pt",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:mmaudio_large_44k_v2_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:mmaudio_synchformer_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:mmaudio_vae_44k_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:rife49.pth",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:sam2_hiera_base_plus.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:wav2vec2-chinese-base_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "model:yolox_l.onnx",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:AudioAdjustVolume",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:AudioEncoderEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:AudioEncoderLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:AudioMerge",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:BasicScheduler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:BlockifyMask",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CFGGuider",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CLIPLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CLIPTextEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CLIPVisionEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CLIPVisionLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ChatterboxTTS",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ChatterboxUnloadAll",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ConditioningZeroOut",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:CreateVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:DWPreprocessor",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:DownloadAndLoadSAM2Model",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:DrawMaskOnImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:EmptySD3LatentImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:GetVideoComponents",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:GrowMask",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ImageBatch",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ImageFromBatch",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ImageScale",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:KSampler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:KSamplerAdvanced",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:KSamplerSelect",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:LatentSyncNode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:LoadAudio",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:LoadImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:LoadVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:LoraLoaderModelOnly",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:MMAudioFeatureUtilsLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:MMAudioModelLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:MMAudioSampler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ModelPatchLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ModelSamplingAuraFlow",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:ModelSamplingSD3",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:PixelPerfectResolution",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:PrimitiveString",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:RIFE VFI",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:RandomNoise",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:Sam2Segmentation",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:SamplerCustomAdvanced",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:SaveAudio",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:SaveImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:SaveVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:TrimVideoLatent",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VAEDecode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VAEDecodeTiled",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VAELoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VHS_LoadVideoPath",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VHS_VideoCombine",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:VideoLengthAdjuster",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:WanAnimateToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:WanImageToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:graphify.py",
+      "target": "node:WanInfiniteTalkToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:image.py",
+      "target": "model:Z-Image-AbliteratedV1.Q8_0.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "model:ae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "model:qwen_3_4b_fp8_mixed.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "model:z-image-turbo-Q6_K.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "model:z_image_nsfw_v2-Q8_0.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:CLIPLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:CLIPTextEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:ConditioningZeroOut",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:EmptySD3LatentImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:KSampler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:ModelSamplingAuraFlow",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:SaveImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:VAEDecode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "node:VAELoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:image.py",
+      "target": "py:shots.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:make.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "dir:jobs",
+      "kind": "data"
+    },
+    {
+      "source": "py:make.py",
+      "target": "dir:voices",
+      "kind": "data"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:ae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:apple_DFN5B-CLIP-ViT-H-14-384_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:mmaudio_large_44k_v2_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:mmaudio_synchformer_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:mmaudio_vae_44k_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:umt5-xxl-encoder-Q5_K_M.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:wan2.1-i2v-14b-480p-Q3_K_M.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:wan2.1_infiniteTalk_single_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:wan_2.1_vae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "model:wav2vec2-chinese-base_fp16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:AudioAdjustVolume",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:AudioEncoderEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:AudioEncoderLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:AudioMerge",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:BasicScheduler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:CFGGuider",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:CLIPTextEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:ChatterboxTTS",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:ChatterboxUnloadAll",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:ConditioningZeroOut",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:ImageBatch",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:KSamplerSelect",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:LoadAudio",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:LoadImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:LoraLoaderModelOnly",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:MMAudioFeatureUtilsLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:MMAudioModelLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:MMAudioSampler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:ModelPatchLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:RandomNoise",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:SamplerCustomAdvanced",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:SaveAudio",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:VAEDecodeTiled",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:VAELoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:VHS_LoadVideoPath",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "node:WanInfiniteTalkToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:make.py",
+      "target": "py:image.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:make.py",
+      "target": "py:qa.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:make.py",
+      "target": "py:shots.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "dir:jobs",
+      "kind": "data"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "ext:comfy",
+      "kind": "http"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:Wan2.2-Animate-14B-Q3_K_S.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:ae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:clip_vision_h.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:dw-ll_ucoco_384_bs5.torchscript.pt",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:lightx2v_I2V_14B_480p_cfg_step_distill_rank64_bf16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:sam2_hiera_base_plus.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:umt5-xxl-encoder-Q5_K_M.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:wan2.2_animate_14B_relight_lora_bf16.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:wan_2.1_vae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "model:yolox_l.onnx",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:BlockifyMask",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:CLIPTextEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:CLIPVisionEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:CLIPVisionLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:CreateVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:DWPreprocessor",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:DownloadAndLoadSAM2Model",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:DrawMaskOnImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:GetVideoComponents",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:GrowMask",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:ImageFromBatch",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:ImageScale",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:KSampler",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:LoadImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:LoadVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:LoraLoaderModelOnly",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:ModelSamplingSD3",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:PixelPerfectResolution",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:PrimitiveString",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:Sam2Segmentation",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:SaveVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:TrimVideoLatent",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:VAEDecode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:VAELoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:motion.py",
+      "target": "node:WanAnimateToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:new_idea.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:pointcheck.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:pointcheck.py",
+      "target": "dir:jobs",
+      "kind": "data"
+    },
+    {
+      "source": "py:pointcheck.py",
+      "target": "py:motion.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:qa.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:qa.py",
+      "target": "ext:comfy",
+      "kind": "http"
+    },
+    {
+      "source": "py:sheet.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:sheet.py",
+      "target": "py:image.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:sheet.py",
+      "target": "py:shots.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:sheet_contact.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "ext:comfy",
+      "kind": "http"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:ae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:rife49.pth",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:umt5-xxl-encoder-Q5_K_M.gguf",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "model:wan_2.1_vae.safetensors",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:CLIPLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:CLIPTextEncode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:ImageFromBatch",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:KSamplerAdvanced",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:LatentSyncNode",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:LoadAudio",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:LoadImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:LoraLoaderModelOnly",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:ModelSamplingSD3",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:RIFE VFI",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:SaveImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:UnetLoaderGGUF",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:VAEDecodeTiled",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:VAELoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:VHS_LoadVideoPath",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:VHS_VideoCombine",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:VideoLengthAdjuster",
+      "kind": "uses"
+    },
+    {
+      "source": "py:shots.py",
+      "target": "node:WanImageToVideo",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/clear_input",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/graph",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/job",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/jobs",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/library",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/motion/job",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/motion/run",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/motion/upload",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/new",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/preview",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/run",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/stop",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/thumb",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/upload_input",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/upload_voice",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/upscale",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/api/voices",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/dashboard",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/files/",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/graph",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/history",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/jobs",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "api:/motion",
+      "kind": "define"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "dir:images",
+      "kind": "data"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "dir:jobs",
+      "kind": "data"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "dir:voices",
+      "kind": "data"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "ext:comfy",
+      "kind": "http"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "model:4x-UltraSharp.pth",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "node:ImageUpscaleWithModel",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "node:LoadImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "node:SaveImage",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "node:UpscaleModelLoader",
+      "kind": "uses"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "py:shots.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "ui:graph.html",
+      "kind": "serve"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "ui:library.html",
+      "kind": "serve"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "ui:motion.html",
+      "kind": "serve"
+    },
+    {
+      "source": "py:studio.py",
+      "target": "ui:studio.html",
+      "kind": "serve"
+    },
+    {
+      "source": "py:turntable.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:turntable.py",
+      "target": "dir:projects",
+      "kind": "data"
+    },
+    {
+      "source": "py:turntable.py",
+      "target": "py:shots.py",
+      "kind": "import"
+    },
+    {
+      "source": "py:upscale.py",
+      "target": "bin:ffmpeg",
+      "kind": "uses"
+    },
+    {
+      "source": "py:upscale.py",
+      "target": "dir:jobs",
+      "kind": "data"
+    },
+    {
+      "source": "py:upscale.py",
+      "target": "py:motion.py",
+      "kind": "import"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/api/graph",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/api/jobs",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/dashboard",
+      "kind": "link"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/graph",
+      "kind": "link"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/history",
+      "kind": "link"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/jobs",
+      "kind": "link"
+    },
+    {
+      "source": "ui:graph.html",
+      "target": "api:/motion",
+      "kind": "link"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/api/library",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/api/stop",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/dashboard",
+      "kind": "link"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/graph",
+      "kind": "link"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/history",
+      "kind": "link"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/jobs",
+      "kind": "link"
+    },
+    {
+      "source": "ui:library.html",
+      "target": "api:/motion",
+      "kind": "link"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/jobs",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/motion/job",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/motion/run",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/motion/upload",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/new",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/api/stop",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/dashboard",
+      "kind": "link"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/graph",
+      "kind": "link"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/history",
+      "kind": "link"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/jobs",
+      "kind": "link"
+    },
+    {
+      "source": "ui:motion.html",
+      "target": "api:/motion",
+      "kind": "link"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/clear_input",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/job",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/jobs",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/new",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/run",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/stop",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/upload_input",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/upload_voice",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/upscale",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/api/voices",
+      "kind": "fetch"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/dashboard",
+      "kind": "link"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/graph",
+      "kind": "link"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/history",
+      "kind": "link"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/jobs",
+      "kind": "link"
+    },
+    {
+      "source": "ui:studio.html",
+      "target": "api:/motion",
+      "kind": "link"
+    }
+  ],
+  "groups": {
+    "entry": 7,
+    "script": 15,
+    "ui": 4,
+    "core": 3,
+    "config": 2,
+    "binary": 1,
+    "api": 24,
+    "comfy": 61,
+    "pack": 10,
+    "model": 27,
+    "data": 5
+  }
+}
