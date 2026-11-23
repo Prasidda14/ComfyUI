@@ -1,0 +1,25 @@
+# Tools and models used
+
+## Image generation
+Tool: `tools/image.py` (run via `run_image.bat`, Studio "Image" page) -> ComfyUI graph
+
+- Z-Image Turbo: `z-image-turbo-Q6_K.gguf` + `qwen_3_4b_fp8_mixed.safetensors`, VAE `ae.safetensors` ("base" mode, best photo quality)
+- Z-Image NSFW v2 (default/"uncensored"): `z_image_nsfw_v2-Q8_0.gguf` + `Z-Image-AbliteratedV1.Q8_0.gguf`
+- Sampler: `res_multistep` / `simple`, CFG 1, ~9 steps, `ModelSamplingAuraFlow` shift 3
+- Upscaler: `4x-UltraSharp.pth` (ESRGAN) via `tools/studio.py` `upscale_picture()`; also `tools/sheet.py` / `tools/turntable.py` for character sheets
+
+## Video generation
+Tools: `tools/shots.py`, `tools/make.py`, `tools/motion.py`, `tools/upscale.py`
+
+- Wan 2.2 I2V A14B (high+low noise pair, GGUF Q3_K_M/Q4_K_M) - main image->video engine (~480x832, 81 frames = 5 s @ 16 fps)
+  - Uncensored: `wan22RemixT2VI2V_i2vHighV30` / `LowV30` (speed LoRA merged, 4-8 steps)
+  - Base: `Wan2.2-I2V-A14B-HighNoise` / `LowNoise` + `wan2.2_i2v_lightx2v_4steps_lora_v1_high/low_noise` speed LoRAs
+- Wan 2.1 I2V 14B (`wan2.1-i2v-14b-480p-Q3_K_M.gguf`) + InfiniteTalk patch `wan2.1_infiniteTalk_single_fp16.safetensors` - talking-head path in `make.py`
+- Wan 2.2 Animate 14B (`Wan2.2-Animate-14B-Q3_K_S.gguf`) + relight LoRA - motion-control character swap in `motion.py`
+- Text encoder `umt5-xxl-encoder-Q5_K_M.gguf`, VAE `wan_2.1_vae.safetensors`
+- RIFE `rife49.pth` (frame interpolation to 50 fps); `upscale.py` does 720p lanczos+unsharp for video
+- Supporting: SAM2 `sam2_hiera_base_plus.safetensors` + DWPose + `clip_vision_h.safetensors` (Animate masking/pose)
+
+## Audio
+- Chatterbox TTS -> LatentSync (`wav2vec2-chinese-base_fp16`) for lips
+- MMAudio (`mmaudio_large_44k_v2` + synchformer / vae / DFN5B-CLIP) for SFX
