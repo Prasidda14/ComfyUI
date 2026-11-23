@@ -1,0 +1,16 @@
+# Shared model folder for this repo (relative paths resolve from this file's folder).
+videos_repo:
+  base_path: models/
+  diffusion_models: |
+    unet
+    diffusion_models
+  unet: unet
+  text_encoders: text_encoders
+  clip: text_encoders
+  vae: vae
+  loras: loras
+  upscale_models: upscale_models
+  mmaudio: mmaudio
+  model_patches: model_patches
+  clip_vision: clip_vision
+  audio_encoders: audio_encoders
