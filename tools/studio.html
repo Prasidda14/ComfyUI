@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Video Studio</title>
+<style>
+  :root { --bg:#f6f6f4; --panel:#fff; --ink:#1d1d1f; --muted:#6b6b70; --line:#e2e2de; --accent:#2f6fed; --accent-ink:#fff;
+          --accent-soft:#edf2ff; --ok:#1f9d55; --warn:#c77800; --bad:#d23c3c; --field:#fbfbfa; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141416; --panel:#1d1d20; --ink:#ececee; --muted:#9a9aa2; --line:#303036;
+          --accent:#5b8cff; --accent-ink:#fff; --accent-soft:#1b2436; --field:#18181b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui, "Segoe UI", sans-serif; }
+  header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:2; }
+  header h1 { font-size:18px; margin:0 6px 0 0; }
+  .tabs { display:flex; gap:4px; }
+  .tabs a { font-size:13px; color:var(--muted); text-decoration:none; padding:6px 12px; border-radius:999px; }
+  .tabs a:hover { background:var(--field); }
+  .tabs a.on { background:#edf2ff; color:var(--accent); font-weight:600; }
+  @media (prefers-color-scheme: dark) { .tabs a.on { background:#1b2436; } }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; background:var(--bad); margin-right:6px; }
+  .dot.on { background:var(--ok); }
+  main { display:grid; grid-template-columns: minmax(340px, 1fr) minmax(320px, 520px); gap:20px; padding:20px; max-width:1300px; margin:auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+  h2 { font-size:15px; margin:0 0 4px; display:flex; gap:8px; align-items:center; }
+  h2 .n { background:var(--accent); color:var(--accent-ink); border-radius:50%; width:22px; height:22px; display:inline-grid; place-items:center; font-size:12px; }
+  .hint { color:var(--muted); font-size:13px; margin:0 0 10px; }
+  textarea, input, select { width:100%; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; }
+  textarea { min-height:78px; resize:vertical; }
+  label { font-size:12px; color:var(--muted); display:block; margin:8px 0 3px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; }
+  .row > * { flex:1; min-width:120px; }
+  button { font:inherit; border-radius:8px; border:1px solid var(--line); background:var(--field); color:var(--ink); padding:8px 14px; cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; }
+  .preview { width:100%; border-radius:10px; background:#0000000d; display:block; max-height:70vh; object-fit:contain; }
+  .empty { border:1px dashed var(--line); border-radius:10px; padding:28px; text-align:center; color:var(--muted); }
+  #status { font-weight:600; }
+  #status.running { color:var(--warn); } #status.done { color:var(--ok); } #status.error { color:var(--bad); }
+  pre { white-space:pre-wrap; font-size:12px; max-height:260px; overflow:auto; background:var(--field); border:1px solid var(--line); border-radius:8px; padding:8px; margin:8px 0 0; }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; margin-top:8px; }
+  .msg { color:var(--bad); font-size:13px; min-height:1em; margin-top:6px; }
+  .files a { margin-right:12px; font-size:13px; color:var(--accent); }
+  .drop { border:1.5px dashed var(--line); border-radius:12px; background:var(--field); padding:20px 16px; text-align:center; cursor:pointer; margin-bottom:10px; }
+  .drop:hover, .drop.over { border-color:var(--accent); background:var(--accent-soft); }
+  .drop svg { width:26px; height:26px; stroke:var(--muted); fill:none; stroke-width:1.6; }
+  .drop.over svg { stroke:var(--accent); }
+  .drop b { display:block; font-weight:600; font-size:14px; margin-top:4px; color:var(--ink); }
+  .drop span { display:block; font-size:12.5px; color:var(--muted); }
+  .meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px; font-size:13px; color:var(--muted); }
+  .meta .fname { color:var(--ink); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:220px; }
+  .meta .spacer { flex:1; }
+  .badge { font-size:11px; padding:2px 8px; border-radius:999px; background:var(--field); border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+  button.mini { padding:5px 10px; font-size:13px; border-radius:7px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Video Studio</h1>
+  <nav class="tabs"><a href="/" class="on">Create video</a><a href="/motion">Motion control</a><a href="/jobs">Jobs</a><a href="/history">History</a><a href="/dashboard">Dashboard</a><a href="/graph">Graph</a></nav>
+  <span><span id="comfyDot" class="dot"></span><span id="comfyTxt">ComfyUI…</span></span>
+  <span style="flex:1"></span>
+  <label style="margin:0">Job</label>
+  <select id="jobSel" style="width:auto"></select>
+  <input id="newName" placeholder="new job name" style="width:170px">
+  <button id="newBtn">New job</button>
+</header>
+
+<main>
+  <div>
+    <section>
+      <h2><span class="n">1</span> Picture</h2>
+      <p class="hint">Who, what they wear, where, framing. For talking clips use a close-up or medium shot. Make it, check it, try again until you like it.</p>
+      <div id="pictureBox"></div>
+      <textarea id="image" placeholder="Medium close-up photo of a 28-year-old woman with wavy copper-red hair, freckles, cream knit sweater, sitting in a cozy cafe, looking at the camera. Natural window light, realistic skin texture, 35mm photo"></textarea>
+      <div class="row">
+        <div><label>Shape</label><select id="size"><option value="portrait">Portrait 9:16</option><option value="landscape">Landscape 16:9</option><option value="square">Square</option></select></div>
+        <div><label>Image model</label><select id="image_model"><option value="uncensored">Uncensored</option><option value="base">Base</option></select></div>
+        <div><label>Seed</label><input id="seed" type="number" min="0" value="1"></div>
+      </div>
+      <div class="actions">
+        <button class="primary" data-run="image">Make picture (~1 min)</button>
+        <button id="anotherBtn">Try another (new seed)</button>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span> Video</h2>
+      <p class="hint">What happens: motion, expression, camera. Uses the picture from step 1.</p>
+      <div id="videoBox"></div>
+      <textarea id="video" placeholder="she smiles and talks to the camera with small natural head movements and hand gestures, static camera"></textarea>
+      <div class="row">
+        <div><label>Quality</label><select id="preset"><option value="draft">Draft (faster test)</option><option value="realism">Realism (final)</option></select></div>
+        <div><label>Length (s, max 5)</label><input id="seconds" type="number" min="1" max="5" step="0.5" value="5"></div>
+        <div><label>Video model</label><select id="video_model"><option value="uncensored">Uncensored (Remix)</option><option value="base">Base Wan 2.2</option></select></div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span> Voice <span class="hint" style="margin:0">(optional)</span></h2>
+      <p class="hint">What the person says - keep it about 5 seconds. Leave empty for no speech.</p>
+      <textarea id="speech" style="min-height:56px" placeholder="Hey! I finally found the best coffee place in town, you have to try this."></textarea>
+      <div class="row">
+        <div><label>Voice</label><select id="voice"></select></div>
+        <div><label>Add your own voice sample (10-15 s .wav)</label><input id="voiceFile" type="file" accept=".wav,.mp3,.flac"></div>
+      </div>
+      <div class="row">
+        <div><label>Emotion: <span id="emoVal"></span></label><input id="voice_emotion" type="range" min="0.25" max="2" step="0.05" value="0.6"></div>
+        <div><label>Lip sync</label><select id="lipsync">
+          <option value="infinitetalk">Keep face identical (InfiniteTalk, slower)</option>
+          <option value="latentsync">Use step-2 video, repaint mouth (faster, face may drift)</option></select></div>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">4</span> Sound <span class="hint" style="margin:0">(optional)</span></h2>
+      <div class="row">
+        <div style="flex:0 0 170px"><label>Sound effects</label><select id="soundMode"><option value="auto">Auto (from video text)</option><option value="custom">Describe it</option><option value="none">None</option></select></div>
+        <div><label>Describe the sound</label><input id="soundText" placeholder="quiet cafe ambience, soft chatter, cups clinking"></div>
+        <div style="flex:0 0 120px"><label>Under speech (dB)</label><input id="sound_volume" type="number" value="-10" step="1"></div>
+      </div>
+      <div class="actions">
+        <button class="primary" data-run="video">Make video + voice + sound</button>
+        <button data-run="audio" title="Keeps the existing video">Redo voice &amp; sound only</button>
+      </div>
+      <div class="msg" id="msg"></div>
+    </section>
+  </div>
+
+  <div>
+    <section>
+      <h2>Status</h2>
+      <div><span id="status">-</span> <span id="elapsed" class="hint"></span></div>
+      <div id="liveBox" style="display:none">
+        <div class="hint" id="stage" style="margin:8px 0 4px"></div>
+        <div style="background:var(--field);border:1px solid var(--line);border-radius:6px;height:10px;overflow:hidden">
+          <div id="bar" style="height:100%;width:0;background:var(--accent);transition:width .4s"></div></div>
+        <div class="hint" id="stepTxt" style="margin-top:4px"></div>
+        <img id="livePrev" class="preview" style="display:none;margin-top:8px;max-height:45vh" alt="live preview">
+        <div class="hint" id="prevNote" style="display:none">Live preview (low quality while it is being made)</div>
+      </div>
+      <div class="actions"><button id="stopBtn" disabled>Stop</button></div>
+      <details><summary>Details / log</summary><pre id="log"></pre></details>
+    </section>
+    <section>
+      <h2>Picture</h2>
+      <div id="imgBox" class="empty">No picture yet - step 1</div>
+    </section>
+    <section>
+      <h2>Video</h2>
+      <div id="vidBox" class="empty">No video yet - steps 2-4</div>
+      <div class="files" id="files"></div>
+    </section>
+  </div>
+</main>
+
+<input id="pictureFile" type="file" accept=".png,.jpg,.jpeg,.webp" style="display:none">
+<input id="videoFile" type="file" accept=".mp4,.mov,.webm,.mkv,.avi" style="display:none">
+
+<script>
+const $ = id => document.getElementById(id);
+const FIELDS = ["image","video","speech","voice","lipsync","preset","seed","seconds","size","image_model","video_model","voice_emotion","sound_volume"];
+let job = null, lastFiles = {}, lastStatus = "";
+const ICON_IMAGE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>';
+const ICON_FILM = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M3 15h18M7 5v14M17 5v14"/></svg>';
+
+async function api(path, opts) { const r = await fetch(path, opts); return r.json().then(j => ({ok: r.ok, ...j})); }
+
+function formFields() {
+  const f = {}; FIELDS.forEach(k => f[k] = $(k).value);
+  const m = $("soundMode").value; f.sound = m === "custom" ? ($("soundText").value.trim() || "auto") : m;
+  return f;
+}
+function fillForm(f) {
+  FIELDS.forEach(k => { if (f[k] !== undefined) $(k).value = f[k]; });
+  if (["auto","none"].includes(f.sound)) { $("soundMode").value = f.sound; $("soundText").value = ""; }
+  else { $("soundMode").value = "custom"; $("soundText").value = f.sound; }
+  $("emoVal").textContent = $("voice_emotion").value;
+}
+
+async function loadVoices(select) {
+  const v = await api("/api/voices");
+  $("voice").innerHTML = v.voices.map(n => `<option value="${n}">${n === "male" ? "male (built-in)" : n}</option>`).join("");
+  if (select) $("voice").value = select;
+}
+async function loadJobs(select) {
+  const j = await api("/api/jobs");
+  $("comfyDot").className = "dot" + (j.comfy ? " on" : "");
+  $("comfyTxt").textContent = !j.comfy ? "ComfyUI loading / offline (takes ~30s)"
+    : j.running ? `GPU busy: ${j.running}` + (j.queue.length ? ` · waiting: ${j.queue.join(", ")}` : "") : "GPU free";
+  const names = select && !j.jobs.includes(select) ? [select, ...j.jobs] : j.jobs;
+  if (names.join("|") !== window._jobList) {
+    window._jobList = names.join("|");
+    $("jobSel").innerHTML = names.map(n => `<option>${n}</option>`).join("");
+  }
+  if (select) $("jobSel").value = select;
+  return j;
+}
+async function openJob(name, refill = true) {
+  job = name; $("jobSel").value = name; lastFiles = {};
+  const info = await api("/api/job?name=" + encodeURIComponent(name));
+  if (refill) fillForm(info.fields);
+  render(info);
+}
+function renderInput(info, kind) {
+  const box = $(kind + "Box"), input = $(kind + "File"), file = info[kind + "_file"];
+  if (!file) {
+    box.innerHTML = `<div class="drop" id="${kind}Drop" role="button" tabindex="0">${kind === "picture" ? ICON_IMAGE : ICON_FILM}
+      <b>Drag a ${kind} here</b><span>or click to choose - ${kind === "picture" ? "png, jpg, webp" : "mp4, mov, webm, mkv"}</span></div>`;
+    const drop = $(kind + "Drop");
+    drop.onclick = () => input.click();
+    drop.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); input.click(); } };
+    drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+    drop.ondragleave = () => drop.classList.remove("over");
+    drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); uploadInput(kind, e.dataTransfer.files[0]); };
+    return;
+  }
+  const src = `/files/${encodeURIComponent(info.name)}/${encodeURIComponent(file)}?t=${info.files[file] || ""}`;
+  box.innerHTML = `${kind === "picture" ? `<img id="pictureMedia" class="preview" style="max-height:34vh" src="${src}" alt="picture">`
+      : `<video id="videoMedia" class="preview" style="max-height:34vh" controls muted src="${src}"></video>`}
+    <div class="meta"><span class="fname">${file}</span><span class="badge" id="${kind}Badge"></span>
+    <span class="spacer"></span>
+    ${kind === "picture" ? `<button class="mini" id="pictureUpscale">Upscale 4x</button>` : ""}
+    <button class="mini" id="${kind}Change">Change ${kind}</button>
+    <button class="mini" id="${kind}Cancel">Cancel ${kind}</button></div>`;
+  const m = $(kind + "Media");
+  if (kind === "picture") { m.onload = () => $("pictureBadge").textContent = m.naturalWidth + " x " + m.naturalHeight; $("pictureUpscale").onclick = upscalePicture; }
+  else m.onloadedmetadata = () => $("videoBadge").textContent = m.duration.toFixed(1) + "s";
+  $(kind + "Change").onclick = () => input.click();
+  $(kind + "Cancel").onclick = () => clearInput(kind);
+}
+async function refresh() {
+  if (job) render(await api("/api/job?name=" + encodeURIComponent(job)));
+}
+
+function render(info) {
+  const st = info.status;
+  $("status").textContent = {running: `Generating: ${info.mode === "image" ? "making picture" : info.mode === "audio" ? "voice & sound" : "making video"}…`,
+                             queued: "Queued - starts automatically when the GPU is free",
+                             done: "Done ✓", error: "Stopped / error - see log", idle: "Ready"}[st];
+  $("status").className = st === "queued" ? "running" : st;
+  $("elapsed").textContent = st === "running"
+    ? `${Math.floor(info.elapsed/60)}m ${info.elapsed%60}s elapsed` + (info.eta != null ? ` · ~${Math.floor(info.eta/60)}m ${info.eta%60}s left` : " · estimating…")
+    : st === "error" ? "- " + ((info.log || "").trim().split("\n").pop() || "") : "";
+  $("log").textContent = info.log || "";
+  const running = st === "running";
+  $("liveBox").style.display = running ? "" : "none";
+  if (running) {
+    $("stage").textContent = info.stage || "starting…";
+    const p = info.progress || {value: 0, max: 0};
+    const pct = info.percent != null ? info.percent : (p.max ? 100 * p.value / p.max : 0);
+    $("bar").style.width = Math.max(0, Math.min(100, pct)) + "%";
+    $("stepTxt").textContent = `${pct.toFixed(0)}% · ` + (p.max ? `step ${p.value} of ${p.max}` : "loading models…");
+    if (info.preview_ts && info.preview_ts !== window._pts) {
+      window._pts = info.preview_ts;
+      $("livePrev").src = "/api/preview?t=" + info.preview_ts;
+      $("livePrev").style.display = ""; $("prevNote").style.display = "";
+    }
+    if (!info.preview_ts) { $("livePrev").style.display = "none"; $("prevNote").style.display = "none"; }
+  }
+  $("stopBtn").disabled = !(st === "running" || st === "queued");
+  $("stopBtn").textContent = st === "queued" ? "Remove from queue" : "Stop";
+  document.querySelectorAll("[data-run], #anotherBtn").forEach(b => b.disabled = st === "running" || st === "queued");
+  const f = info.files, base = `/files/${encodeURIComponent(info.name)}/`;
+  if (f["ref.png"] && f["ref.png"] !== lastFiles["ref.png"])
+    $("imgBox").outerHTML = `<img id="imgBox" class="preview" src="${base}ref.png?t=${f["ref.png"]}">`;
+  if (!f["ref.png"] && lastFiles["ref.png"] === undefined) $("imgBox").outerHTML = `<div id="imgBox" class="empty">No picture yet - step 1</div>`;
+  const vid = ["final.mp4","video_talk.mp4","video_lipsync.mp4","video_smooth.mp4"].find(n => f[n]);
+  if (vid && f[vid] !== lastFiles[vid])
+    $("vidBox").outerHTML = `<video id="vidBox" class="preview" controls src="${base}${vid}?t=${f[vid]}"></video>`;
+  if (!vid) $("vidBox").outerHTML = `<div id="vidBox" class="empty">No video yet - steps 2-4</div>`;
+  $("files").innerHTML = Object.keys(f).map(n => `<a href="${base}${n}?t=${f[n]}" target="_blank">${n}</a>`).join("");
+  ["picture", "video"].forEach(k => {
+    const s = info.name + ":" + (info[k + "_file"] ? info[k + "_file"] + "@" + (f[info[k + "_file"]] || 0) : "");
+    if (s !== window["_sig_" + k]) { window["_sig_" + k] = s; renderInput(info, k); }
+  });
+  lastFiles = f;
+  if (lastStatus === "running" && st !== "running") loadJobs(job);
+  lastStatus = st;
+}
+
+async function run(mode) {
+  $("msg").textContent = "";
+  if (!job) { $("msg").textContent = "Create a job first (top right)."; return; }
+  const r = await api("/api/run", {method: "POST", headers: {"Content-Type": "application/json"},
+                                    body: JSON.stringify({name: job, mode, fields: formFields()})});
+  if (!r.ok) { $("msg").textContent = r.error; return; }
+  openJob(job, false);
+}
+
+document.querySelectorAll("[data-run]").forEach(b => b.onclick = () => run(b.dataset.run));
+$("anotherBtn").onclick = () => { $("seed").value = (parseInt($("seed").value || "1") + 1); run("image"); };
+$("stopBtn").onclick = () => api("/api/stop", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: job})});
+$("jobSel").onchange = () => openJob($("jobSel").value);
+$("voice_emotion").oninput = () => $("emoVal").textContent = $("voice_emotion").value;
+$("newBtn").onclick = async () => {
+  const name = ($("newName").value || "").trim().replace(/[^A-Za-z0-9_\-]+/g, "_");
+  if (!name) { $("newName").focus(); return; }
+  const made = await api("/api/new", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name})});
+  if (made.ok) $("msg").textContent = "Created folder " + made.path;
+  job = name; $("newName").value = "";
+  fillForm({image:"", video:"", speech:"", sound:"auto", voice:"female", lipsync:"infinitetalk", preset:"realism", seed:"1",
+            seconds:"5", size:"portrait", image_model:"uncensored", video_model:"uncensored", voice_emotion:"0.6", sound_volume:"-10"});
+  $("jobSel").insertAdjacentHTML("afterbegin", `<option>${name}</option>`); $("jobSel").value = name;
+  render({name, status:"idle", files:{}, log:"", elapsed:0});
+};
+$("voiceFile").onchange = async () => {
+  const file = $("voiceFile").files[0]; if (!file) return;
+  const r = await api("/api/upload_voice", {method: "POST", headers: {"X-Filename": encodeURIComponent(file.name)}, body: file});
+  if (!r.ok) { $("msg").textContent = r.error; return; }
+  await loadVoices(r.voice); $("voiceFile").value = "";
+};
+async function uploadInput(kind, file) {
+  const input = $(kind + "File");
+  if (!job) { $("msg").textContent = "Create a job first (top right)."; return; }
+  file = file || input.files[0]; if (!file) return;
+  const r = await api("/api/upload_input", {method: "POST", headers: {"X-Job": encodeURIComponent(job),
+    "X-Filename": encodeURIComponent(file.name), "X-Kind": kind}, body: file});
+  if (!r.ok) { $("msg").textContent = r.error; return; }
+  input.value = "";
+  refresh();
+}
+async function clearInput(kind) {
+  if (!job) return;
+  await api("/api/clear_input", {method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name: job, kind})});
+  refresh();
+}
+async function upscalePicture() {
+  if (!job) return;
+  const btn = $("pictureUpscale");
+  $("msg").textContent = "";
+  btn.disabled = true; btn.textContent = "Upscaling... (up to 2 min)";
+  const r = await api("/api/upscale", {method: "POST", headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({name: job})});
+  if (!r.ok) {
+    $("msg").textContent = r.error || "upscale failed";
+    btn.disabled = false; btn.textContent = "Upscale 4x";
+    return;
+  }
+  refresh();
+}
+$("pictureFile").onchange = () => uploadInput("picture");
+$("videoFile").onchange = () => uploadInput("video");
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => e.preventDefault());
+
+(async () => {
+  await loadVoices();
+  const j = await loadJobs();
+  const qjob = new URLSearchParams(location.search).get("job");
+  if (qjob) openJob(qjob); else if (j.running) openJob(j.running); else if (j.jobs.length) openJob(j.jobs[0]);
+  setInterval(async () => {
+    if (job) render(await api("/api/job?name=" + encodeURIComponent(job)));
+  }, 2000);
+  setInterval(() => loadJobs(job), 4000);
+})();
+</script>
+</body>
+</html>
+
