@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Motion Control - Video Studio</title>
+<style>
+  :root { --bg:#f6f6f4; --panel:#fff; --ink:#1d1d1f; --muted:#6b6b70; --line:#e2e2de; --accent:#2f6fed; --accent-ink:#fff;
+          --accent-soft:#edf2ff; --ok:#1f9d55; --warn:#c77800; --bad:#d23c3c; --field:#fbfbfa; }
+  @media (prefers-color-scheme: dark) { :root { --bg:#141416; --panel:#1d1d20; --ink:#ececee; --muted:#9a9aa2; --line:#303036;
+          --accent:#5b8cff; --accent-ink:#fff; --accent-soft:#1b2436; --field:#18181b; } }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font:15px/1.45 system-ui, "Segoe UI", sans-serif; }
+  header { display:flex; gap:12px; align-items:center; flex-wrap:wrap; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--panel); position:sticky; top:0; z-index:2; }
+  header h1 { font-size:18px; margin:0 6px 0 0; }
+  .tabs { display:flex; gap:4px; }
+  .tabs a { font-size:13px; color:var(--muted); text-decoration:none; padding:6px 12px; border-radius:999px; }
+  .tabs a:hover { background:var(--field); }
+  .tabs a.on { background:var(--accent-soft); color:var(--accent); font-weight:600; }
+  .dot { width:9px; height:9px; border-radius:50%; display:inline-block; background:var(--bad); margin-right:6px; }
+  .dot.on { background:var(--ok); }
+  main { display:grid; grid-template-columns: minmax(340px, 1fr) minmax(320px, 520px); gap:20px; padding:20px; max-width:1300px; margin:auto; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  section { background:var(--panel); border:1px solid var(--line); border-radius:12px; padding:16px; margin-bottom:16px; }
+  h2 { font-size:15px; margin:0 0 4px; display:flex; gap:8px; align-items:center; }
+  h2 .n { background:var(--accent); color:var(--accent-ink); border-radius:50%; width:22px; height:22px; display:inline-grid; place-items:center; font-size:12px; flex:0 0 auto; }
+  .hint { color:var(--muted); font-size:13px; margin:0 0 10px; }
+  textarea, input, select { width:100%; background:var(--field); color:var(--ink); border:1px solid var(--line); border-radius:8px; padding:8px 10px; font:inherit; }
+  textarea { min-height:70px; resize:vertical; }
+  label { font-size:12px; color:var(--muted); display:block; margin:8px 0 3px; }
+  .row { display:flex; gap:10px; flex-wrap:wrap; }
+  .row > * { flex:1; min-width:110px; }
+  button { font:inherit; border-radius:8px; border:1px solid var(--line); background:var(--field); color:var(--ink); padding:8px 14px; cursor:pointer; }
+  button.primary { background:var(--accent); border-color:var(--accent); color:var(--accent-ink); font-weight:600; }
+  button.mini { padding:5px 10px; font-size:13px; border-radius:7px; }
+  button:disabled { opacity:.45; cursor:not-allowed; }
+  .actions { display:flex; gap:8px; flex-wrap:wrap; margin-top:12px; align-items:center; }
+  .preview { width:100%; border-radius:10px; background:#0000000d; display:block; max-height:70vh; object-fit:contain; }
+  .drop { border:1.5px dashed var(--line); border-radius:12px; background:var(--field); padding:24px 16px; text-align:center; cursor:pointer; transition:border-color .15s, background .15s; }
+  .drop:hover, .drop.over { border-color:var(--accent); background:var(--accent-soft); }
+  .drop svg { width:28px; height:28px; stroke:var(--muted); fill:none; stroke-width:1.6; }
+  .drop.over svg { stroke:var(--accent); }
+  .drop b { display:block; font-weight:600; font-size:14px; margin-top:6px; color:var(--ink); }
+  .drop span { display:block; font-size:12.5px; color:var(--muted); margin-top:2px; }
+  .meta { display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-top:8px; font-size:13px; color:var(--muted); }
+  .meta .fname { color:var(--ink); font-weight:500; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; max-width:220px; }
+  .meta .spacer { flex:1; }
+  .badge { font-size:11px; padding:2px 8px; border-radius:999px; background:var(--field); border:1px solid var(--line); color:var(--muted); white-space:nowrap; }
+  .note { font-size:12.5px; color:var(--muted); min-height:1.1em; margin-top:6px; }
+  .note.err { color:var(--bad); }
+  .picker { border-radius:10px; overflow:hidden; border:1px solid var(--line); background:#000; cursor:crosshair; text-align:center; }
+  .frame { position:relative; display:inline-block; max-width:100%; line-height:0; }
+  .frame video { display:block; max-width:100%; max-height:44vh; width:auto; height:auto; }
+  .picker .marker { position:absolute; width:18px; height:18px; margin:-9px 0 0 -9px; border-radius:50%; border:2px solid #fff; background:var(--accent); box-shadow:0 0 0 2px #0007, 0 0 12px #0006; pointer-events:none; }
+  .picker .aim { position:absolute; left:8px; top:8px; font-size:11px; color:#fff; background:#0000008c; border-radius:6px; padding:3px 7px; pointer-events:none; line-height:1.5; }
+  .picker .trim { position:absolute; right:8px; top:8px; font-size:11px; color:#fff; background:#0000008c; border-radius:6px; padding:3px 7px; pointer-events:none; line-height:1.5; }
+  .empty { border:1px dashed var(--line); border-radius:10px; padding:26px; text-align:center; color:var(--muted); font-size:14px; }
+  .empty b { color:var(--ink); font-weight:600; }
+  #status { font-weight:600; }
+  #status.running { color:var(--warn); } #status.done { color:var(--ok); } #status.error { color:var(--bad); }
+  pre { white-space:pre-wrap; font-size:12px; max-height:260px; overflow:auto; background:var(--field); border:1px solid var(--line); border-radius:8px; padding:8px; margin:8px 0 0; }
+  details summary { cursor:pointer; color:var(--muted); font-size:13px; margin-top:8px; }
+  .msg { color:var(--bad); font-size:13px; min-height:1em; margin-top:6px; }
+  .files a { margin-right:12px; font-size:13px; color:var(--accent); }
+  .tips { margin:0; padding-left:18px; font-size:13px; color:var(--muted); }
+  .tips li { margin:5px 0; }
+  .est { font-size:12.5px; color:var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🎬 Video Studio</h1>
+  <nav class="tabs"><a href="/">Create video</a><a href="/motion" class="on">Motion control</a><a href="/jobs">Jobs</a><a href="/history">History</a><a href="/dashboard">Dashboard</a><a href="/graph">Graph</a></nav>
+  <span><span id="comfyDot" class="dot"></span><span id="comfyTxt">ComfyUI...</span></span>
+  <span style="flex:1"></span>
+  <label style="margin:0">Job</label>
+  <select id="jobSel" style="width:auto"></select>
+  <input id="newName" placeholder="new job name" style="width:170px">
+  <button id="newBtn">New job</button>
+</header>
+
+<main>
+  <div>
+    <section>
+      <h2><span class="n">1</span> Character picture</h2>
+      <p class="hint">Who gets put into the video. A clear, mostly frontal shot - whole body or three-quarter works best.</p>
+      <div id="charBox"></div>
+      <div class="note" id="charNote"></div>
+    </section>
+
+    <section>
+      <h2><span class="n">2</span> Motion video</h2>
+      <p class="hint">One person, clearly visible. Their movement and the background are kept. Click on the person below to aim the mask.</p>
+      <div id="driveBox"></div>
+      <div class="note" id="driveNote"></div>
+    </section>
+
+    <section>
+      <h2><span class="n">3</span> Scene &amp; settings</h2>
+      <p class="hint">Describe the scene, camera and lighting. The body motion comes from the video, not from this text.</p>
+      <textarea id="prompt" placeholder="the character moves naturally, same camera, same background, natural lighting"></textarea>
+      <details><summary>Negative prompt</summary><textarea id="negative" style="margin-top:8px"></textarea></details>
+      <div class="row">
+        <div><label>Shape</label><select id="shape">
+          <option value="480x832">Portrait 9:16 (480x832)</option>
+          <option value="832x480">Landscape 16:9 (832x480)</option>
+          <option value="640x640">Square (640x640)</option>
+        </select></div>
+        <div><label>Length (s)</label><input id="seconds" type="number" min="1" max="120" step="0.5" value="3"></div>
+        <div><label>Seed</label><input id="seed" type="number" min="0" value="1"></div>
+      </div>
+      <details><summary>Advanced</summary>
+        <div class="row" style="margin-top:8px">
+          <div><label>Steps</label><input id="steps" type="number" min="2" max="12" value="6"></div>
+          <div><label>CFG</label><input id="cfg" type="number" min="1" max="6" step="0.5" value="1"></div>
+          <div><label>Relight matching</label><select id="relight"><option value="1">On</option><option value="0">Off</option></select></div>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <div><label>Long clip (chained)</label><select id="chunked"><option value="0">Off (one pass, max 5s)</option><option value="1">On (full clip)</option></select></div>
+          <div><label>Start at (s)</label><input id="startSec" type="number" min="0" max="120" step="0.5" value="0"></div>
+        </div>
+        <div class="hint" style="margin-top:6px">Chained mode renders 77-frame passes (~4.8s each, +1 frame overlap) and joins them. Allow ~40 min for a 6 s clip.</div>
+      </details>
+      <div class="actions">
+        <button class="primary" id="runBtn" disabled>Replace character in video</button>
+        <button id="againBtn" disabled>Try another (new seed)</button>
+        <span class="est" id="est"></span>
+      </div>
+      <div class="msg" id="msg"></div>
+    </section>
+  </div>
+
+  <div>
+    <section>
+      <h2>Status</h2>
+      <div><span id="status">-</span> <span id="elapsed" class="hint"></span></div>
+      <div id="liveBox" style="display:none">
+        <div class="hint" id="stage" style="margin:8px 0 4px"></div>
+        <div style="background:var(--field);border:1px solid var(--line);border-radius:6px;height:10px;overflow:hidden">
+          <div id="bar" style="height:100%;width:0;background:var(--accent);transition:width .4s"></div></div>
+        <div class="hint" id="stepTxt" style="margin-top:4px"></div>
+        <img id="livePrev" class="preview" style="display:none;margin-top:8px;max-height:45vh" alt="live preview">
+        <div class="hint" id="prevNote" style="display:none">Live preview (low quality while it is being made)</div>
+      </div>
+      <div class="actions"><button id="stopBtn" disabled>Stop</button></div>
+      <details><summary>Details / log</summary><pre id="log"></pre></details>
+    </section>
+    <section>
+      <h2>Result</h2>
+      <div id="outBox" class="empty"><b>No clip yet.</b><br>Your swapped video shows up here.</div>
+      <div class="files" id="files"></div>
+    </section>
+    <section>
+      <h2>Tips for a good swap</h2>
+      <ul class="tips">
+        <li>Use one person in the source video - extra people get ignored or confuse the mask.</li>
+        <li>Face the camera in the picture; matching the video's framing helps.</li>
+        <li>Only the first 5 seconds are used; longer videos are trimmed.</li>
+        <li>480p takes about 10-20 minutes on this laptop.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+<input id="charFile" type="file" accept=".png,.jpg,.jpeg,.webp" style="display:none">
+<input id="driveFile" type="file" accept=".mp4,.mov,.webm,.mkv,.avi" style="display:none">
+
+<script>
+const $ = id => document.getElementById(id);
+const IMG_EXT = [".png", ".jpg", ".jpeg", ".webp"], VID_EXT = [".mp4", ".mov", ".webm", ".mkv", ".avi"];
+const state = { job: null, point: {x: 0.5, y: 0.5}, char: null, drive: null, files: {}, status: "", busy: false,
+                shownChar: null, shownDrive: null, shownOut: null };
+
+const ICON_IMAGE = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>';
+const ICON_FILM = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M3 15h18M7 5v14M17 5v14"/></svg>';
+
+async function api(path, opts) { const r = await fetch(path, opts); return r.json().then(j => ({ok: r.ok, ...j})); }
+
+function framesFromSeconds(s) {
+  const n = Math.max(1, Math.round(parseFloat(s) * 16));
+  return 1 + 4 * Math.floor((n - 1) / 4);
+}
+function fmtSize(n) { return n > 2**20 ? (n / 2**20).toFixed(1) + " MB" : Math.max(1, Math.round(n / 1024)) + " KB"; }
+
+function fill(f) {
+  $("prompt").value = f.prompt || "";
+  $("negative").value = f.negative || "";
+  const shape = (f.width || "480") + "x" + (f.height || "832");
+  const sel = $("shape");
+  if (![...sel.options].some(o => o.value === shape)) {
+    sel.insertAdjacentHTML("afterbegin", `<option value="${shape}">${shape.replace("x", " x ")}</option>`);
+  }
+  sel.value = shape;
+  $("seconds").value = Math.max(1, Math.round((parseInt(f.frames || 49) - 1) / 16) || 3);
+  $("seed").value = f.seed || "1";
+  $("steps").value = f.steps || "6";
+  $("cfg").value = f.cfg || "1";
+  $("relight").value = String(f.relight ?? "1");
+  $("chunked").value = String(f.chunked ?? "0");
+  $("startSec").value = String(((parseInt(f.start_frame || 0) || 0) / 16).toFixed(2));
+  state.point.x = parseFloat(f.point_x ?? 0.5);
+  state.point.y = parseFloat(f.point_y ?? 0.5);
+}
+
+function fields() {
+  const [w, h] = $("shape").value.split("x");
+  const chunked = $("chunked").value === "1";
+  const secs = chunked ? $("seconds").value : Math.min(5, $("seconds").value);
+  return { prompt: $("prompt").value, negative: $("negative").value, width: w, height: h,
+           frames: String(framesFromSeconds(secs)), steps: $("steps").value,
+           cfg: $("cfg").value, seed: $("seed").value, relight: $("relight").value,
+           point_x: state.point.x.toFixed(3), point_y: state.point.y.toFixed(3),
+           chunked: chunked ? "1" : "0",
+           start_frame: String(Math.round(parseFloat($("startSec").value || 0) * 16)),
+           chunk_frames: "77" };
+}
+
+async function loadJobs(select) {
+  const j = await api("/api/jobs");
+  $("comfyDot").className = "dot" + (j.comfy ? " on" : "");
+  $("comfyTxt").textContent = !j.comfy ? "ComfyUI loading / offline (takes ~30s)"
+    : j.running ? `GPU busy: ${j.running}` + (j.queue.length ? ` - waiting: ${j.queue.join(", ")}` : "") : "GPU free";
+  const names = select && !j.jobs.includes(select) ? [select, ...j.jobs] : j.jobs;
+  if (names.join("|") !== window._jobList) {
+    window._jobList = names.join("|");
+    $("jobSel").innerHTML = names.map(n => `<option>${n}</option>`).join("");
+  }
+  if (select) $("jobSel").value = select;
+  return j;
+}
+
+function suggestName() {
+  const d = new Date(), p = n => String(n).padStart(2, "0");
+  return `motion_${p(d.getMonth() + 1)}${p(d.getDate())}_${p(d.getHours())}${p(d.getMinutes())}`;
+}
+
+async function ensureJob() {
+  if (state.job) return state.job;
+  const name = suggestName();
+  await api("/api/new", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name})});
+  state.job = name;
+  $("jobSel").insertAdjacentHTML("afterbegin", `<option>${name}</option>`);
+  $("jobSel").value = name;
+  return name;
+}
+
+function renderChar(info) {
+  const box = $("charBox");
+  if (!info.character) {
+    box.innerHTML = `<div class="drop" id="charDrop" role="button" tabindex="0">${ICON_IMAGE}
+      <b>Drag a picture here</b><span>or click to choose - png, jpg, webp</span></div>`;
+    const drop = $("charDrop");
+    drop.onclick = () => $("charFile").click();
+    drop.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("charFile").click(); } };
+    drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+    drop.ondragleave = () => drop.classList.remove("over");
+    drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); upload("character", e.dataTransfer.files[0]); };
+  } else {
+    const base = `/files/${encodeURIComponent(info.name)}/${encodeURIComponent(info.character)}`;
+    const hasRef = !!info.files["ref.png"] && info.character !== "ref.png";
+    box.innerHTML = `<img id="charImg" class="preview" style="max-height:34vh" src="${base}?t=${info.files[info.character] || ""}" alt="character">
+      <div class="meta"><span class="fname">${info.character}</span><span class="badge" id="charDim"></span>
+      <span class="spacer"></span>
+      <button class="mini" id="charChange">Change picture</button>
+      ${hasRef ? `<button class="mini" id="charRef">Use this job's picture</button>` : ""}</div>`;
+    $("charImg").onload = () => { $("charDim").textContent = $("charImg").naturalWidth + " x " + $("charImg").naturalHeight; };
+    $("charChange").onclick = () => $("charFile").click();
+    if (hasRef) $("charRef").onclick = () => reuse("character", "ref.png");
+  }
+}
+
+function renderDrive(info) {
+  const box = $("driveBox");
+  if (!info.drive) {
+    box.innerHTML = `<div class="drop" id="driveDrop" role="button" tabindex="0">${ICON_FILM}
+      <b>Drag a video here</b><span>or click to choose - mp4, mov, webm, mkv</span></div>`;
+    const drop = $("driveDrop");
+    drop.onclick = () => $("driveFile").click();
+    drop.onkeydown = e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("driveFile").click(); } };
+    drop.ondragover = e => { e.preventDefault(); drop.classList.add("over"); };
+    drop.ondragleave = () => drop.classList.remove("over");
+    drop.ondrop = e => { e.preventDefault(); drop.classList.remove("over"); upload("drive", e.dataTransfer.files[0]); };
+  } else {
+    const base = `/files/${encodeURIComponent(info.name)}/${encodeURIComponent(info.drive)}`;
+    const reuseName = ["final.mp4", "video_talk.mp4", "video_smooth.mp4", "video_lipsync.mp4"].find(n => info.files[n]);
+    box.innerHTML = `<div class="picker"><div class="frame" id="driveFrame"><video id="driveVid" src="${base}?t=${info.files[info.drive] || ""}" autoplay muted loop playsinline></video>
+        <div id="marker" class="marker"></div><div class="aim" id="aim"></div><div class="trim" id="trim"></div></div></div>
+      <div class="meta"><span class="fname">${info.drive}</span><span class="badge" id="driveMeta"></span>
+      <span class="spacer"></span>
+      <button class="mini" id="drivePlay">Pause preview</button>
+      <button class="mini" id="driveChange">Change video</button>
+      ${reuseName ? `<button class="mini" id="driveReuse">Use this job's video</button>` : ""}</div>`;
+    const frame = $("driveFrame"), vid = $("driveVid"), marker = $("marker");
+    const place = () => {
+      marker.style.left = (state.point.x * 100) + "%";
+      marker.style.top = (state.point.y * 100) + "%";
+      $("aim").textContent = "aim " + Math.round(state.point.x * 100) + "% / " + Math.round(state.point.y * 100) + "%";
+      $("trim").textContent = "first " + $("seconds").value + "s used";
+    };
+    place();
+    frame.onclick = ev => {
+      const r = frame.getBoundingClientRect();
+      state.point.x = Math.min(1, Math.max(0, (ev.clientX - r.left) / r.width));
+      state.point.y = Math.min(1, Math.max(0, (ev.clientY - r.top) / r.height));
+      place();
+    };
+    vid.onloadedmetadata = () => {
+      $("driveMeta").textContent = fmtSize(info.files[info.drive] || 0) + " - " + vid.duration.toFixed(1) + "s";
+      $("trim").textContent = "first " + $("seconds").value + "s used";
+      if (state.char && vid.duration) updateEst();
+    };
+    $("driveChange").onclick = () => $("driveFile").click();
+    $("drivePlay").onclick = () => {
+      if (vid.paused) { vid.play(); $("drivePlay").textContent = "Pause preview"; }
+      else { vid.pause(); $("drivePlay").textContent = "Play preview"; }
+    };
+    vid.onloadeddata = () => { $("drivePlay").textContent = vid.paused ? "Play preview" : "Pause preview"; };
+    if (reuseName) $("driveReuse").onclick = () => reuse("drive", reuseName);
+  }
+}
+
+function render(info) {
+  state.files = info.files || {};
+  state.char = !!info.character; state.drive = !!info.drive;
+  state.status = info.status;
+  const st = info.status;
+  $("status").textContent = {running: "Generating - replacing the character...", queued: "Queued - starts when the GPU is free",
+                             done: "Done", error: "Stopped / error - see log", idle: "Ready"}[st] || st;
+  $("status").className = st === "queued" ? "running" : st;
+  $("elapsed").textContent = st === "running"
+    ? `${Math.floor(info.elapsed/60)}m ${info.elapsed%60}s elapsed` + (info.eta != null ? ` · ~${Math.floor(info.eta/60)}m ${info.eta%60}s left` : " · estimating…")
+    : "";
+  $("log").textContent = info.log || "";
+  const running = st === "running";
+  $("liveBox").style.display = running ? "" : "none";
+  if (running) {
+    $("stage").textContent = "Wan 2.2 Animate - Mix mode";
+    const p = info.progress || {value: 0, max: 0};
+    const pct = info.percent != null ? info.percent : (p.max ? 100 * p.value / p.max : 0);
+    $("bar").style.width = Math.max(0, Math.min(100, pct)) + "%";
+    $("stepTxt").textContent = `${pct.toFixed(0)}% · ` + (p.max ? `step ${p.value} of ${p.max}` : "loading / preprocessing...");
+    if (info.preview_ts && info.preview_ts !== window._pts) {
+      window._pts = info.preview_ts;
+      $("livePrev").src = "/api/preview?t=" + info.preview_ts;
+      $("livePrev").style.display = ""; $("prevNote").style.display = "";
+    }
+  }
+  const blocked = st === "running" || st === "queued";
+  $("stopBtn").disabled = !blocked;
+  $("stopBtn").textContent = st === "queued" ? "Remove from queue" : "Stop";
+  $("runBtn").disabled = blocked || !state.char || !state.drive;
+  $("againBtn").disabled = $("runBtn").disabled;
+  updateEst();
+  const f = info.files || {}, base = `/files/${encodeURIComponent(info.name)}/`;
+  const out = f["motion.mp4"] ? info.name + ":" + f["motion.mp4"] : null;
+  if (out !== state.shownOut) {
+    state.shownOut = out;
+    $("outBox").outerHTML = out
+      ? `<video id="outBox" class="preview" style="max-height:44vh" controls src="${base}motion.mp4?t=${f["motion.mp4"]}"></video>`
+      : `<div id="outBox" class="empty"><b>No clip yet.</b><br>Your swapped video shows up here.</div>`;
+  }
+  $("files").innerHTML = Object.keys(f).map(n => `<a href="${base}${encodeURIComponent(n)}?t=${f[n]}" target="_blank">${n}</a>`).join("");
+}
+
+function updateEst() {
+  const s = $("shape").value.replace("x", " x "), sec = $("seconds").value;
+  const chunked = $("chunked").value === "1";
+  const passes = chunked ? Math.ceil(parseFloat(sec || 0) / 4.8) : 1;
+  $("est").textContent = !state.char || !state.drive ? "add a picture and a video first"
+    : `${sec}s - ${s} - ${passes} pass${passes > 1 ? "es" : ""}, about ${Math.round(passes * 15)}-${Math.round(passes * 25)} min`;
+}
+
+async function openJob(name) {
+  state.job = name; $("jobSel").value = name;
+  state.shownChar = null; state.shownDrive = null; state.shownOut = null;
+  const info = await api("/api/motion/job?name=" + encodeURIComponent(name));
+  fill(info.fields || {});
+  state.shownChar = info.character ? info.character + "@" + (info.files[info.character] || 0) : null;
+  state.shownDrive = info.drive ? info.drive + "@" + (info.files[info.drive] || 0) : null;
+  renderChar(info); renderDrive(info); render(info);
+}
+
+async function refresh() {
+  if (!state.job) return;
+  const info = await api("/api/motion/job?name=" + encodeURIComponent(state.job));
+  const csig = info.character ? info.character + "@" + (info.files[info.character] || 0) : null;
+  const dsig = info.drive ? info.drive + "@" + (info.files[info.drive] || 0) : null;
+  if (csig !== state.shownChar) { state.shownChar = csig; renderChar(info); }
+  if (dsig !== state.shownDrive) { state.shownDrive = dsig; renderDrive(info); }
+  render(info);
+}
+
+async function upload(kind, file) {
+  const note = $(kind === "character" ? "charNote" : "driveNote");
+  note.className = "note";
+  if (!file) return;
+  const ext = ("." + (file.name.split(".").pop() || "")).toLowerCase();
+  const allowed = kind === "character" ? IMG_EXT : VID_EXT;
+  if (!allowed.includes(ext)) { note.className = "note err"; note.textContent = "That file type is not supported."; return; }
+  if (state.busy) return;
+  state.busy = true;
+  note.textContent = "Uploading " + file.name + "...";
+  const name = await ensureJob();
+  const r = await api("/api/motion/upload", {method: "POST",
+    headers: {"X-Job": name, "X-Kind": kind, "X-Filename": encodeURIComponent(file.name)}, body: file});
+  state.busy = false;
+  if (!r.ok) { note.className = "note err"; note.textContent = r.error || "upload failed"; return; }
+  note.textContent = "";
+  $(kind === "character" ? "charFile" : "driveFile").value = "";
+  await refresh();
+  await loadJobs(state.job);
+}
+
+async function reuse(kind, filename) {
+  const note = $(kind === "character" ? "charNote" : "driveNote");
+  note.className = "note";
+  note.textContent = "Copying " + filename + "...";
+  const src = `/files/${encodeURIComponent(state.job)}/${encodeURIComponent(filename)}`;
+  const blob = await (await fetch(src)).blob();
+  const file = new File([blob], filename, {type: blob.type});
+  await upload(kind, file);
+}
+
+async function run(newSeed) {
+  $("msg").textContent = "";
+  if (!state.job) { $("msg").textContent = "Add a picture and a video first."; return; }
+  if (!state.char || !state.drive) { $("msg").textContent = "Add a picture and a video first."; return; }
+  if (newSeed) $("seed").value = String(parseInt($("seed").value || "1") + 1);
+  const r = await api("/api/motion/run", {method: "POST", headers: {"Content-Type": "application/json"},
+                                          body: JSON.stringify({name: state.job, fields: fields()})});
+  if (!r.ok) { $("msg").textContent = r.error || "could not start"; return; }
+  await refresh();
+  await loadJobs(state.job);
+}
+
+$("charFile").onchange = () => upload("character", $("charFile").files[0]);
+$("driveFile").onchange = () => upload("drive", $("driveFile").files[0]);
+$("runBtn").onclick = () => run(false);
+$("againBtn").onclick = () => run(true);
+$("stopBtn").onclick = () => api("/api/stop", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name: state.job})});
+$("jobSel").onchange = () => openJob($("jobSel").value);
+$("seconds").oninput = () => { updateEst(); if ($("trim")) $("trim").textContent = $("seconds").value + "s used"; };
+$("chunked").onchange = updateEst;
+$("shape").onchange = updateEst;
+$("newBtn").onclick = async () => {
+  const name = ($("newName").value || "").trim().replace(/[^A-Za-z0-9_\-]+/g, "_");
+  if (!name) { $("newName").focus(); return; }
+  const made = await api("/api/new", {method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify({name})});
+  await loadJobs(name);
+  $("newName").value = "";
+  state.job = name; $("jobSel").value = name;
+  state.shownChar = null; state.shownDrive = null; state.shownOut = null;
+  fill({}); renderChar({name}); renderDrive({name});
+  render({name, status: "idle", files: {}, log: "", elapsed: 0});
+  $("msg").textContent = made.ok ? "New job ready - add a picture and a video." : "";
+};
+
+window.addEventListener("dragover", e => e.preventDefault());
+window.addEventListener("drop", e => e.preventDefault());
+
+(async () => {
+  $("newName").placeholder = suggestName();
+  const j = await loadJobs();
+  const qjob = new URLSearchParams(location.search).get("job");
+  if (qjob) openJob(qjob); else if (j.running) openJob(j.running); else if (j.jobs.length) openJob(j.jobs[0]);
+  else { renderChar({name: null}); renderDrive({name: null}); updateEst(); }
+  setInterval(refresh, 2000);
+  setInterval(() => loadJobs(state.job), 4000);
+})();
+</script>
+</body>
+</html>
+
