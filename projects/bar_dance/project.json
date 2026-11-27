@@ -1,0 +1,18 @@
+{
+  "preset": "draft",
+  "image_model": "uncensored",
+  "seed": 2001,
+  "width": 480,
+  "height": 832,
+  "frames": 81,
+  "fps": 16,
+
+  "character": "A 28-year-old woman with shoulder-length wavy copper-red auburn hair, light freckles, green eyes, wearing a cream knit sweater, light blue straight-leg jeans, white sneakers and small gold hoop earrings",
+  "style": "realistic footage, warm dim bar lighting with neon accents, realistic skin texture, natural motion, 35mm, subtle film grain",
+
+  "loras": [],
+
+  "shots": [
+    {"id": "s01", "image": "refs/bartop_s11.png", "action": "she dances energetically on top of the bar counter, swaying her hips, raising her arms above her head and spinning slowly, her hair bouncing, people cheering below, camera static, full body in frame", "seed": 2001}
+  ]
+}
