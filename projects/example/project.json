@@ -1,0 +1,23 @@
+{
+  "_help": "character + style are added to EVERY shot prompt (keeps identity/look fixed). image: path inside this project or 'chain' (= last frame of previous shot). audio: optional wav/mp3 -> LatentSync 1.5 lip sync.",
+
+  "preset": "draft",
+  "image_model": "uncensored",
+  "seed": 1001,
+  "width": 480,
+  "height": 832,
+  "frames": 81,
+  "fps": 16,
+
+  "character": "A 28-year-old woman with shoulder-length wavy auburn hair, light freckles, green eyes, wearing a cream knit sweater and small gold hoop earrings",
+  "style": "handheld smartphone footage, natural window light, realistic skin texture, shallow depth of field, 35mm, subtle film grain",
+
+  "loras": [
+    {"_example": "put Civitai LoRA files in models/loras and list them here", "file": "REPLACE_realism_lora.safetensors", "high": 0.0, "low": 0.0}
+  ],
+
+  "shots": [
+    {"id": "s01", "image": "refs/hero.png", "action": "she looks up from her coffee and smiles softly at the camera", "seed": 1001},
+    {"id": "s02", "image": "chain", "action": "she starts talking to the camera, relaxed hand gestures", "audio": "audio/s02.wav", "seed": 1002}
+  ]
+}
