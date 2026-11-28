@@ -1,0 +1,288 @@
+{
+ "shot": {
+  "id": "t01",
+  "image": "refs/test.png",
+  "action": "the camera slowly pushes in"
+ },
+ "preset": "draft",
+ "seed": 1,
+ "prompt": "the camera slowly pushes in. natural light",
+ "negative": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走, cartoon, cgi, 3d render, plastic skin, airbrushed, oversaturated",
+ "start_image": "C:\\Users\\prasi\\Desktop\\Videos\\projects\\_smoketest\\refs/test.png",
+ "graphs": {
+  "video": {
+   "1": {
+    "class_type": "UnetLoaderGGUF",
+    "inputs": {
+     "unet_name": "Wan2.2-I2V-A14B-HighNoise-Q3_K_M.gguf"
+    }
+   },
+   "2": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+     "model": [
+      "1",
+      0
+     ],
+     "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_high_noise.safetensors",
+     "strength_model": 1.0
+    }
+   },
+   "3": {
+    "class_type": "ModelSamplingSD3",
+    "inputs": {
+     "model": [
+      "2",
+      0
+     ],
+     "shift": 5.0
+    }
+   },
+   "4": {
+    "class_type": "UnetLoaderGGUF",
+    "inputs": {
+     "unet_name": "Wan2.2-I2V-A14B-LowNoise-Q3_K_M.gguf"
+    }
+   },
+   "5": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+     "model": [
+      "4",
+      0
+     ],
+     "lora_name": "wan2.2_i2v_lightx2v_4steps_lora_v1_low_noise.safetensors",
+     "strength_model": 1.0
+    }
+   },
+   "6": {
+    "class_type": "ModelSamplingSD3",
+    "inputs": {
+     "model": [
+      "5",
+      0
+     ],
+     "shift": 5.0
+    }
+   },
+   "7": {
+    "class_type": "CLIPLoaderGGUF",
+    "inputs": {
+     "clip_name": "umt5-xxl-encoder-Q5_K_M.gguf",
+     "type": "wan"
+    }
+   },
+   "8": {
+    "class_type": "VAELoader",
+    "inputs": {
+     "vae_name": "wan_2.1_vae.safetensors"
+    }
+   },
+   "9": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+     "clip": [
+      "7",
+      0
+     ],
+     "text": "the camera slowly pushes in. natural light"
+    }
+   },
+   "10": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+     "clip": [
+      "7",
+      0
+     ],
+     "text": "色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走, cartoon, cgi, 3d render, plastic skin, airbrushed, oversaturated"
+    }
+   },
+   "11": {
+    "class_type": "LoadImage",
+    "inputs": {
+     "image": "test.png"
+    }
+   },
+   "12": {
+    "class_type": "WanImageToVideo",
+    "inputs": {
+     "positive": [
+      "9",
+      0
+     ],
+     "negative": [
+      "10",
+      0
+     ],
+     "vae": [
+      "8",
+      0
+     ],
+     "start_image": [
+      "11",
+      0
+     ],
+     "width": 320,
+     "height": 320,
+     "length": 17,
+     "batch_size": 1
+    }
+   },
+   "13": {
+    "class_type": "KSamplerAdvanced",
+    "inputs": {
+     "model": [
+      "3",
+      0
+     ],
+     "positive": [
+      "12",
+      0
+     ],
+     "negative": [
+      "12",
+      1
+     ],
+     "latent_image": [
+      "12",
+      2
+     ],
+     "add_noise": "enable",
+     "noise_seed": 1,
+     "steps": 4,
+     "cfg": 1.0,
+     "sampler_name": "euler",
+     "scheduler": "simple",
+     "start_at_step": 0,
+     "end_at_step": 2,
+     "return_with_leftover_noise": "enable"
+    }
+   },
+   "14": {
+    "class_type": "KSamplerAdvanced",
+    "inputs": {
+     "model": [
+      "6",
+      0
+     ],
+     "positive": [
+      "12",
+      0
+     ],
+     "negative": [
+      "12",
+      1
+     ],
+     "latent_image": [
+      "13",
+      0
+     ],
+     "add_noise": "disable",
+     "noise_seed": 0,
+     "steps": 4,
+     "cfg": 1.0,
+     "sampler_name": "euler",
+     "scheduler": "simple",
+     "start_at_step": 2,
+     "end_at_step": 10000,
+     "return_with_leftover_noise": "disable"
+    }
+   },
+   "15": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+     "samples": [
+      "14",
+      0
+     ],
+     "vae": [
+      "8",
+      0
+     ],
+     "tile_size": 256,
+     "overlap": 64,
+     "temporal_size": 64,
+     "temporal_overlap": 8
+    }
+   },
+   "16": {
+    "class_type": "VHS_VideoCombine",
+    "inputs": {
+     "images": [
+      "15",
+      0
+     ],
+     "frame_rate": 16,
+     "loop_count": 0,
+     "filename_prefix": "_smoketest/t01_draft_s1_raw",
+     "format": "video/h264-mp4",
+     "pix_fmt": "yuv420p",
+     "crf": 17,
+     "save_metadata": true,
+     "trim_to_audio": false,
+     "pingpong": false,
+     "save_output": true
+    }
+   },
+   "17": {
+    "class_type": "RIFE VFI",
+    "inputs": {
+     "frames": [
+      "15",
+      0
+     ],
+     "ckpt_name": "rife49.pth",
+     "clear_cache_after_n_frames": 10,
+     "multiplier": 2,
+     "fast_mode": true,
+     "ensemble": true,
+     "scale_factor": 1.0,
+     "dtype": "float16",
+     "torch_compile": false,
+     "batch_size": 1
+    }
+   },
+   "18": {
+    "class_type": "VHS_VideoCombine",
+    "inputs": {
+     "images": [
+      "17",
+      0
+     ],
+     "frame_rate": 32,
+     "loop_count": 0,
+     "filename_prefix": "_smoketest/t01_draft_s1_smooth",
+     "format": "video/h264-mp4",
+     "pix_fmt": "yuv420p",
+     "crf": 17,
+     "save_metadata": true,
+     "trim_to_audio": false,
+     "pingpong": false,
+     "save_output": true
+    }
+   },
+   "19": {
+    "class_type": "ImageFromBatch",
+    "inputs": {
+     "image": [
+      "15",
+      0
+     ],
+     "batch_index": 16,
+     "length": 1
+    }
+   },
+   "20": {
+    "class_type": "SaveImage",
+    "inputs": {
+     "images": [
+      "19",
+      0
+     ],
+     "filename_prefix": "_smoketest/t01_draft_s1_last"
+    }
+   }
+  }
+ }
+}
