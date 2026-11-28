@@ -1,0 +1,5 @@
+﻿{
+  "preset": "draft", "seed": 1, "width": 320, "height": 320, "frames": 17, "fps": 16,
+  "character": "", "style": "natural light",
+  "shots": [ {"id": "t01", "image": "refs/test.png", "action": "the camera slowly pushes in"} ]
+}
